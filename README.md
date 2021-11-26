@@ -48,7 +48,7 @@ We will be designing our WEP cracking program based on the FMS attack on WEP, sp
 There are 5 files involved in the WEP encryption.<br/>
 1. [arc4.py](arc4.py)<br/>
 This file contains the code for the ARC4 KSA (arc4_ksa) and PRGA (arc4_prga) implementation, as well as a bytewise XOR function (byte_xor).<br/><br/>
-2. [packet.py](packet.py)<br/>
+2. [packets.py](packets.py)<br/>
 This file contains the function (create_packets) for collating suitable WEP packets to output as WEP_Packets.csv, and is also where the program asks the user to input the WEP key.<br/><br/>
 3. [wep.py](wep.py)<br/>
 This file contains the function (wep_arc4) for generating WEP packets with IVs in the suitable form for FMS attack. It also contains a function to generate a random plaintext (get_plaintext) and another function to generate all possible IVs in the suitable format (generate_ivs).<br/><br/>
