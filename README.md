@@ -47,7 +47,7 @@ We will be designing our WEP cracking program based on the FMS attack on WEP, sp
 ## 3.1. WEP Encryption
 There are 5 files involved in the WEP encryption.<br/>
 1. [arc4.py](arc4.py)<br/>
-This file contains the code for the ARC4 KSA [*arc4_ksa*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L5-L16) and PRGA [*arc4_prga*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L18-L33) implementation, as well as a bytewise XOR function [*byte_xor*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L1-L3).<br/><br/>
+This file contains the code for the ARC4 KSA function [*arc4_ksa*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L5-L16) and PRGA function [*arc4_prga*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L18-L33) implementation, as well as a bytewise XOR function [*byte_xor*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L1-L3).<br/><br/>
 2. [packets.py](packets.py)<br/>
 This file contains the function [*create_packets*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/packets.py#L5-L44) for collating suitable WEP packets to output as WEP_Packets.csv, and is also where the program asks the user to input the WEP key.<br/><br/>
 3. [wep.py](wep.py)<br/>
