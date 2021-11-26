@@ -70,7 +70,7 @@ This file contains the code for the function (wep_cracking) for conducting the F
 # 4. Development
 The FMS attack focuses on collecting packets with IVs in the particular form: (A + 3, N − 1, X).
 - A is a value that varies from 0 to (length of WEP key - 1), where the length of the WEP key is in terms of the number of bytes.
-- N is the keyspace a byte can represent, which is 256 (in base 10).
+- N is the keyspace a byte can represent, which is 255 (in base 10).
 - X is a value from 0 to 255 inclusive.
 
 After collecting enough WEP packets which contain IVs in the form mentioned above, the attacker iterates through each of such packets. The first IV of such form is (3,255,0)
