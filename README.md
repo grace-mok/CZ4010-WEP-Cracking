@@ -1,11 +1,11 @@
 # CZ4010 WEP Cracking
 This GitHub repository is for the module CZ4010 Applied Cryptography, and it is for Project Topic #6: Demonstration of WEP Password Cracking.
 
-# Motivation
+# 1. Motivation
 Wired Equivalent Privacy, also known as WEP, was a well recognised Wi-Fi security standard during the early 2000s. However, over time, many people discovered multiple weaknesses WEP had, and exploited the weakness to launch attacks on WEP. There are now various known attacks that are successful, and have threatened the WEP security standard. This caused many to stop using WEP and use its more secure alternatives, such as Wi-Fi Protected Access (WPA), WPA2, and many more.
 
-# Research
-## Wired Equivalent Privacy (WEP)
+# 2. Research
+## 2.1. Wired Equivalent Privacy (WEP)
 WEP takes in a 40-bit (5 bytes, 10 hexadecimal digits) or 104-bits (13 bytes, 26 hexadecimal digits) key or password, and generates a 24-bit IV (3 bytes). The most common form of the session key of WEP is as follows:
 ```
 session_key = IV || WEP
@@ -21,15 +21,15 @@ The ciphertext is then sent along with the IV as a data packet as follows:
 data_packet = IV || ciphertext
 ```
 
-### Rivest Cipher 4 (RC4/ARC4) in WEP
+### 2.1.1. Rivest Cipher 4 (RC4/ARC4) in WEP
 Firstly, the ARC4 stream cipher initialises the S-box using the session key and puts it through the KSA to generate an initial state of the S-box. The KSA performs swaps between computed indexes of the S-box.
 
 Then, using the initialised S-box, the Pseudo-Random Generation Algorithm (PRGA) scrambles it further, and every iteration produces a byte of the keystream. The PRGA also performs swaps between computed indexes of the S-box. Each byte of the generated keystream is then XORed with each byte of the plaintext to form the ciphertext, as mentioned previously.
 
-## Attacks on WEP
+## 2.2. Attacks on WEP
 There are many known attacks on WEP. The simplest form is a brute force attack, where the attacker exhausts all possible values of IV (2^24), which can be done within hours. Most of them leverage on the weakness of the Rivest Cipher 4 (ARC4 or RC4), which is utilised in WEP to encrypt the WEP key. Such attacks may include the Klein’s attack and the Fluhrer, Mantin and Shamir (FMS) attack. 
 
-## Fluhrer, Mantin and Shamir (FMS) attack
+### 2.2.1. Fluhrer, Mantin and Shamir (FMS) attack
 The FMS attack allows attackers to derive the key from a numerous amount of messages that are encrypted with ARC4 Stream Cipher. It specifically exploits the weakness in the PRGA of ARC4.
 
 Before the start of any scrambling, the attacker can actually derive the first byte of the keystream, as the first byte of the plaintext is usually always ‘0xAA’, which is the value of the SNAP header. We will use the value of the first byte of the keystream later on. The first byte of the keystream is then obtained as follows:
@@ -39,12 +39,12 @@ keystream_first_byte = 0xAA XOR ciphertext_first_byte
 
 There are particular IVs, which are deemed as weak IVs, that allow attackers to possibly derive the (M+1)th byte of the WEP key if they have the first byte of the keystream and the 0th to Mth bytes of the key.  This exploit is a result of one of the weaknesses of the PRGA in ARC4.
 
-# Design
+# 3. Design
 We will create our own mock WEP protocol, as we face difficulties in extracting actual WEP packets due to hardware constraints.
 
 We will be designing our WEP cracking program based on the FMS attack on WEP, specifically targeting the ARC4, as it provides us with a proper guess for the WEP key, instead of other methods where frequency analysis is required, and many manual adjustments are required, which is not ideal.
 
-## WEP Encryption
+## 3.1. WEP Encryption
 There are 5 files involved in the WEP encryption.<br/>
 1. arc4.py<br/>
 This file contains the code for the ARC4 KSA (arc4_ksa) and PRGA (arc4_prga) implementation, as well as a bytewise XOR function (byte_xor).<br/><br/>
@@ -62,12 +62,12 @@ Data is the actual WEP packet data transmitted.<br/>
 IV is the first 6 hexadecimal digits of the data.<br/>
 Ciphertext is the remaining digits of the data, excluding the first 6 hexadecimal digits.<br/>
 
-## WEP Cracking
+## 3.2. WEP Cracking
 There is 1 file involved in the WEP Cracking.<br/>
 1. wep_cracking.py<br/>
 This file contains the code for the function (wep_cracking) for conducting the FMS attack and cracking the code.
 
-# Development
+# 4. Development
 The FMS attack focuses on collecting packets with IVs in the particular form: (A + 3, N − 1, X).
 - A is a value that varies from 0 to (length of WEP key - 1), where the length of the WEP key is in terms of the number of bytes.
 - N is the keyspace a byte can represent, which is 256 (in base 10).
@@ -86,7 +86,7 @@ The attacker then repeats the same process, doing 4 iterations of the KSA using 
  
 After getting all potential values of the bytes of the session key (in decimal), the attacker then omits the first 3 bytes to get the potential WEP key. The attacker then has to convert each value of the bytes to hexadecimal and then compare with the actual WEP key, which is in hexadecimal. If the potential key guess matches the actual WEP key, the attacker successfully cracked the WEP key.
 
-# Use of the code
+# 5. Use of the code
 1. To install the required dependencies, run the following command in the root directory:
 ```
 pip install -r requirements.txt
