@@ -45,26 +45,27 @@ We will create our own mock WEP protocol, as we face difficulties in extracting 
 We will be designing our WEP cracking program based on the FMS attack on WEP, specifically targeting the ARC4, as it provides us with a proper guess for the WEP key, instead of other methods where frequency analysis is required, and many manual adjustments are required, which is not ideal.
 
 ## WEP Encryption
-There are 5 files involved in the WEP encryption.
+There are 5 files involved in the WEP encryption.<br/>
 1. arc4.py
-This file contains the code for the ARC4 KSA (arc4_ksa) and PRGA (arc4_prga) implementation, as well as a bytewise XOR function (byte_xor).
+This file contains the code for the ARC4 KSA (arc4_ksa) and PRGA (arc4_prga) implementation, as well as a bytewise XOR function (byte_xor).<br/>
 2. packet.py
-This file contains the function (create_packets) for collating suitable WEP packets to output as WEP_Packets.csv, and is also where the program asks the user to input the WEP key.
+This file contains the function (create_packets) for collating suitable WEP packets to output as WEP_Packets.csv, and is also where the program asks the user to input the WEP key.<br/>
 3. wep.py
-This file contains the function (wep_arc4) for generating WEP packets with IVs in the suitable form for FMS attack. It also contains a function to generate a random plaintext (get_plaintext) and another function to generate all possible IVs in the suitable format (generate_ivs).
+This file contains the function (wep_arc4) for generating WEP packets with IVs in the suitable form for FMS attack. It also contains a function to generate a random plaintext (get_plaintext) and another function to generate all possible IVs in the suitable format (generate_ivs).<br/>
 4. sentences.txt
-This file contains a list of sentences where a sentence can be randomly chosen and used as a plaintext for WEP encryption.
+This file contains a list of sentences where a sentence can be randomly chosen and used as a plaintext for WEP encryption.<br/>
 5. WEP_Packets.csv
-This file contains all the generated WEP packets from the program. The data in this particular CSV file is for the key ‘ABCDEF12345678901234567890’, and the plaintexts are randomly selected from the available sentences in sentences.txt. This CSV file will be overwritten every time the program runs.
-It has 4 columns, which are row number, data, iv, and ciphertext.
-Row number is the index of each row in the dataframe.
-Data is the actual WEP packet data transmitted.
-IV is the first 6 hexadecimal digits of the data.
-Ciphertext is the remaining digits of the data, excluding the first 6 hexadecimal digits.
+This file contains all the generated WEP packets from the program. The data in this particular CSV file is for the key ‘ABCDEF12345678901234567890’, and the plaintexts are randomly selected from the available sentences in sentences.txt. This CSV file will be overwritten every time the program runs.<br/>
+It has 4 columns, which are row number, data, iv, and ciphertext.<br/>
+Row number is the index of each row in the dataframe.<br/>
+Data is the actual WEP packet data transmitted.<br/>
+IV is the first 6 hexadecimal digits of the data.<br/>
+Ciphertext is the remaining digits of the data, excluding the first 6 hexadecimal digits.<br/>
 
 ## WEP Cracking
-There is 1 file in
-
+There is 1 file involved in the WEP Cracking.<br/>
+1. wep_cracking.py
+This file contains the code for the function (wep_cracking) for conducting the FMS attack and cracking the code.
 
 # Development
 The FMS attack focuses on collecting packets with IVs in the particular form: (A + 3, N − 1, X).
