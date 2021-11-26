@@ -57,10 +57,10 @@ This file contains a list of sentences where a sentence can be randomly chosen a
 5. WEP_Packets.csv<br/>
 This file contains all the generated WEP packets from the program. The data in this particular CSV file is for the key ‘ABCDEF12345678901234567890’, and the plaintexts are randomly selected from the available sentences in sentences.txt. This CSV file will be overwritten every time the program runs.<br/><br/>
 It has 4 columns, which are row number, data, iv, and ciphertext.<br/><br/>
-- row number is the index of each row in the dataframe.
-- data is the actual WEP packet data transmitted.
-- iv is the first 6 hexadecimal digits of the data.
-- ciphertext is the remaining digits of the data, excluding the first 6 hexadecimal digits.
+    - row number is the index of each row in the dataframe.
+    - data is the actual WEP packet data transmitted.
+    - iv is the first 6 hexadecimal digits of the data.
+    - ciphertext is the remaining digits of the data, excluding the first 6 hexadecimal digits.
 
 ## 3.2. WEP Cracking
 There is 1 file involved in the WEP Cracking.<br/>
@@ -96,6 +96,6 @@ pip install -r requirements.txt
 python wep_cracking.py
 ```
 3. The user will need to provide 2 inputs during the program:
-- Type the WEP key you want to crack using this program and press ‘Enter’ at the start of the program.
-- Press ‘Enter’ when the generation of packets is complete.
+    - Type the WEP key you want to crack using this program and press ‘Enter’ at the start of the program.
+    - Press ‘Enter’ when the generation of packets is complete.
 4. The program will print to the console a guess of the WEP key it derived from the FMS attack, and will check whether the WEP key guess is correct. If the guess is correct, the program prints to the console a success message, else, it prints a failure message.
