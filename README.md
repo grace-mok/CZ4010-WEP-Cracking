@@ -57,10 +57,10 @@ This file contains a list of sentences where a sentence can be randomly chosen a
 5. WEP_Packets.csv<br/>
 This file contains all the generated WEP packets from the program. The data in this particular CSV file is for the key ‘ABCDEF12345678901234567890’, and the plaintexts are randomly selected from the available sentences in sentences.txt. This CSV file will be overwritten every time the program runs.<br/><br/>
 It has 4 columns, which are row number, data, iv, and ciphertext.<br/><br/>
-Row number is the index of each row in the dataframe.<br/>
-Data is the actual WEP packet data transmitted.<br/>
-IV is the first 6 hexadecimal digits of the data.<br/>
-Ciphertext is the remaining digits of the data, excluding the first 6 hexadecimal digits.<br/>
+- row number is the index of each row in the dataframe.
+- data is the actual WEP packet data transmitted.
+- iv is the first 6 hexadecimal digits of the data.
+- ciphertext is the remaining digits of the data, excluding the first 6 hexadecimal digits.
 
 ## 3.2. WEP Cracking
 There is 1 file involved in the WEP Cracking.<br/>
