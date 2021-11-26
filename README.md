@@ -47,11 +47,11 @@ We will be designing our WEP cracking program based on the FMS attack on WEP, sp
 ## 3.1. WEP Encryption
 There are 5 files involved in the WEP encryption.<br/>
 1. [arc4.py](arc4.py)<br/>
-This file contains the code for the ARC4 KSA [https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L5-L16](*arc4_ksa*) and PRGA [https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L18-L33](*arc4_prga*) implementation, as well as a bytewise XOR function [https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L1-L3](*byte_xor*).<br/><br/>
+This file contains the code for the ARC4 KSA [*arc4_ksa*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L5-L16) and PRGA [*arc4_prga*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L18-L33) implementation, as well as a bytewise XOR function [*byte_xor*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/arc4.py#L1-L3).<br/><br/>
 2. [packets.py](packets.py)<br/>
-This file contains the function [https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/packets.py#L5-L44](*create_packets*) for collating suitable WEP packets to output as WEP_Packets.csv, and is also where the program asks the user to input the WEP key.<br/><br/>
+This file contains the function [*create_packets*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/packets.py#L5-L44) for collating suitable WEP packets to output as WEP_Packets.csv, and is also where the program asks the user to input the WEP key.<br/><br/>
 3. [wep.py](wep.py)<br/>
-This file contains the function [https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/wep.py#L30-L61](*wep_arc4*) for generating WEP packets with IVs in the suitable form for FMS attack. It also contains a function to generate a random plaintext [https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/wep.py#L10-L13](*get_plaintext*) and another function to generate all possible IVs in the suitable format [https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/wep.py#L15-L28](*generate_ivs*).<br/><br/>
+This file contains the function [*wep_arc4*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/wep.py#L30-L61) for generating WEP packets with IVs in the suitable form for FMS attack. It also contains a function to generate a random plaintext [*get_plaintext*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/wep.py#L10-L13) and another function to generate all possible IVs in the suitable format [*generate_ivs*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/wep.py#L15-L28).<br/><br/>
 4. [sentences.txt](sentences.txt)<br/>
 This file contains a list of sentences where a sentence can be randomly chosen and used as a plaintext for WEP encryption.<br/><br/>
 5. [WEP_Packets.csv](WEP_Packets.csv)<br/>
@@ -65,7 +65,7 @@ It has 4 columns, which are row number, data, iv, and ciphertext.<br/>
 ## 3.2. WEP Cracking
 There is 1 file involved in the WEP Cracking.<br/>
 1. [wep_cracking.py](wep_cracking.py)<br/>
-This file contains the code for the function [https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/wep_cracking.py#L4-L96](*wep_cracking*) for conducting the FMS attack and cracking the code.
+This file contains the code for the function [*wep_cracking*](https://github.com/grace-mok/CZ4010-WEP-Cracking/blob/a075317619a78afe64176fd0c21af3669cc0c4e7/wep_cracking.py#L4-L96) for conducting the FMS attack and cracking the code.
 
 # 4. Development
 The FMS attack focuses on collecting packets with IVs in the particular form: (A + 3, N − 1, X).
