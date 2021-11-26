@@ -1,7 +1,6 @@
 import math
 import pandas as pd
 import random
-from Crypto.Random import get_random_bytes
 from arc4 import arc4_ksa, arc4_prga, byte_xor
 
 '''

@@ -69,7 +69,12 @@ def wep_cracking():
     # Convert the individual byte values (which are in decimal as of now) into hexadecimal values
     key_guess_hex_list = []
     for digit in seed_guess[3:]:
-        key_guess_hex_list.append(hex(digit)[2:])
+        hex_rep = hex(digit)[2:]
+        # Check for number 0-9, and add extra '0' in front of the number
+        if int(hex_rep, 16) < 10:
+            hex_rep = "0" + hex_rep
+        key_guess_hex_list.append(hex_rep)
+        print(key_guess_hex_list)
     key_guess = ''.join(key_guess_hex_list)
     print("The password (in Hexadecimals) derived from the Fluhrer, Mantin and Shamir attack is: ", key_guess.upper())
 
