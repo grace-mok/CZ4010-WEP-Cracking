@@ -56,7 +56,7 @@ This file contains the function (wep_arc4) for generating WEP packets with IVs i
 This file contains a list of sentences where a sentence can be randomly chosen and used as a plaintext for WEP encryption.<br/><br/>
 5. WEP_Packets.csv<br/>
 This file contains all the generated WEP packets from the program. The data in this particular CSV file is for the key ‘ABCDEF12345678901234567890’, and the plaintexts are randomly selected from the available sentences in sentences.txt. This CSV file will be overwritten every time the program runs.<br/><br/>
-It has 4 columns, which are row number, data, iv, and ciphertext.<br/><br/>
+It has 4 columns, which are row number, data, iv, and ciphertext.<br/>
     - row number is the index of each row in the dataframe.
     - data is the actual WEP packet data transmitted.
     - iv is the first 6 hexadecimal digits of the data.
@@ -90,12 +90,12 @@ After getting all potential values of the bytes of the session key (in decimal),
 1. To install the required dependencies, run the following command in the root directory:
 ```
 pip install -r requirements.txt
-```
+```  
 2. To start the program, run the following command in the root directory:
 ```
 python wep_cracking.py
-```
+```  
 3. The user will need to provide 2 inputs during the program:
     - Type the WEP key you want to crack using this program and press ‘Enter’ at the start of the program.
-    - Press ‘Enter’ when the generation of packets is complete.
+    - Press ‘Enter’ when the generation of packets is complete.  
 4. The program will print to the console a guess of the WEP key it derived from the FMS attack, and will check whether the WEP key guess is correct. If the guess is correct, the program prints to the console a success message, else, it prints a failure message.
