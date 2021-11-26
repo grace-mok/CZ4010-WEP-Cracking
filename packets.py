@@ -38,4 +38,7 @@ def create_packets():
     print("Dataframe of Packets generated: ")
     print(df)
 
+    df.to_csv("WEP_Packets.csv")
+    print("** NOTE: The dataframe is converted to csv and can be found in the 'WEP_Packets.csv' file generated.")
+
     return df, user_input

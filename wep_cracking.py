@@ -6,6 +6,9 @@ def wep_cracking():
     packets_df, actual_wep_key = create_packets()
 
     print()
+    input("PRESS ENTER TO CONTINUE TO THE CRACKING OF THE WEP PASSWORD...")
+
+    print()
     print("====================================================================")
     print("Cracking of WEP key in progress...")
     print("====================================================================")
@@ -45,7 +48,8 @@ def wep_cracking():
                 if i == 1:
                     sbox_0, s_box1 = s_box[0], s_box[1]
             
-            # Do the (A+3)th iteration
+            # Check that the scrambling in the PRGA is not done well
+            # Do a mock PRGA for the current state of S-box
             i += 1
             x = s_box[1]
             if x + s_box[x] == A:
@@ -54,7 +58,6 @@ def wep_cracking():
                     continue
                 
                 # Else, the positions of 1st and 2nd byte in S-box did not swap at all, so take it as a weak IV
-                # derived_next_byte = bytes([(keystream_first_byte[0] - j - s_box[i]) % 256])
                 derived_next_byte_value = (keystream_first_byte[0] - j - s_box[i]) % 256
 
                 if derived_next_byte_value in next_byte_guess.keys():
@@ -65,6 +68,10 @@ def wep_cracking():
         confirmed_next_byte = max(next_byte_guess, key=next_byte_guess.get)
         # Append the confirmed next byte to the seed_guess list
         seed_guess.append(confirmed_next_byte)
+        
+    print("Keystream (IV || WEP Key/Password) in Decimal equivalent of Bytes: ", seed_guess)
+    print("** NOTE: Each list item represents a byte in the keystream.")
+    print()
 
     # Convert the individual byte values (which are in decimal as of now) into hexadecimal values
     key_guess_hex_list = []
@@ -74,7 +81,6 @@ def wep_cracking():
         if int(hex_rep, 16) < 10:
             hex_rep = "0" + hex_rep
         key_guess_hex_list.append(hex_rep)
-        print(key_guess_hex_list)
     key_guess = ''.join(key_guess_hex_list)
     print("The password (in Hexadecimals) derived from the Fluhrer, Mantin and Shamir attack is: ", key_guess.upper())
 
