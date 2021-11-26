@@ -46,15 +46,15 @@ We will be designing our WEP cracking program based on the FMS attack on WEP, sp
 
 ## 3.1. WEP Encryption
 There are 5 files involved in the WEP encryption.<br/>
-1. arc4.py<br/>
+1. [arc4.py](arc4.py)<br/>
 This file contains the code for the ARC4 KSA (arc4_ksa) and PRGA (arc4_prga) implementation, as well as a bytewise XOR function (byte_xor).<br/><br/>
-2. packet.py<br/>
+2. [packet.py](packet.py)<br/>
 This file contains the function (create_packets) for collating suitable WEP packets to output as WEP_Packets.csv, and is also where the program asks the user to input the WEP key.<br/><br/>
-3. wep.py<br/>
+3. [wep.py](wep.py)<br/>
 This file contains the function (wep_arc4) for generating WEP packets with IVs in the suitable form for FMS attack. It also contains a function to generate a random plaintext (get_plaintext) and another function to generate all possible IVs in the suitable format (generate_ivs).<br/><br/>
-4. sentences.txt<br/>
+4. [sentences.txt](sentences.txt)<br/>
 This file contains a list of sentences where a sentence can be randomly chosen and used as a plaintext for WEP encryption.<br/><br/>
-5. WEP_Packets.csv<br/>
+5. [WEP_Packets.csv](WEP_Packets.csv)<br/>
 This file contains all the generated WEP packets from the program. The data in this particular CSV file is for the key ‘ABCDEF12345678901234567890’, and the plaintexts are randomly selected from the available sentences in sentences.txt. This CSV file will be overwritten every time the program runs.<br/><br/>
 It has 4 columns, which are row number, data, iv, and ciphertext.<br/>
     - row number is the index of each row in the dataframe.
@@ -64,7 +64,7 @@ It has 4 columns, which are row number, data, iv, and ciphertext.<br/>
 
 ## 3.2. WEP Cracking
 There is 1 file involved in the WEP Cracking.<br/>
-1. wep_cracking.py<br/>
+1. [wep_cracking.py](wep_cracking.py)<br/>
 This file contains the code for the function (wep_cracking) for conducting the FMS attack and cracking the code.
 
 # 4. Development
