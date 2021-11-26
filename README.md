@@ -30,14 +30,14 @@ Then, using the initialised S-box, the Pseudo-Random Generation Algorithm (PRGA)
 There are many known attacks on WEP. The simplest form is a brute force attack, where the attacker exhausts all possible values of IV (2^24), which can be done within hours. Most of them leverage on the weakness of the Rivest Cipher 4 (ARC4 or RC4), which is utilised in WEP to encrypt the WEP key. Such attacks may include the Klein’s attack and the Fluhrer, Mantin and Shamir (FMS) attack. 
 
 ### 2.2.1. Fluhrer, Mantin and Shamir (FMS) attack
-The FMS attack allows attackers to derive the key from a numerous amount of messages that are encrypted with ARC4 Stream Cipher. It specifically exploits the weakness in the PRGA of ARC4.
+The FMS attack allows attackers to derive the key from a numerous amount of messages that are encrypted with ARC4 Stream Cipher. It specifically exploits the weakness in the KSA of ARC4.
 
 Before the start of any scrambling, the attacker can actually derive the first byte of the keystream, as the first byte of the plaintext is usually always ‘0xAA’, which is the value of the SNAP header. We will use the value of the first byte of the keystream later on. The first byte of the keystream is then obtained as follows:
 ```
 keystream_first_byte = 0xAA XOR ciphertext_first_byte
 ```
 
-There are particular IVs, which are deemed as weak IVs, that allow attackers to possibly derive the (M+1)th byte of the WEP key if they have the first byte of the keystream and the 0th to Mth bytes of the key.  This exploit is a result of one of the weaknesses of the PRGA in ARC4.
+There are particular IVs, which are deemed as weak IVs, that allow attackers to possibly derive the (M+1)th byte of the WEP key if they have the first byte of the keystream and the 0th to Mth bytes of the key.  This exploit is a result of one of the weaknesses of the KSA in ARC4.
 
 # 3. Design
 We will create our own mock WEP protocol, as we face difficulties in extracting actual WEP packets due to hardware constraints.
