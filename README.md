@@ -11,7 +11,7 @@ WEP takes in a 40-bit (5 bytes, 10 hexadecimal digits) or 104-bits (13 bytes, 26
 session_key = IV || WEP
 ```
 
-The session key (or seed) is then used as an input into the ARC4 stream cipher, to produce a keystream that is of the same length as the plaintext that is to be encrypted. The plaintext is then XORed with the session key to form the ciphertext as shown below:
+The session key (or seed) is then used as an input into the ARC4 stream cipher, to produce a keystream that is of the same length as the plaintext that is to be encrypted. The plaintext is then XORed with the keystream to form the ciphertext as shown below:
 ```
 ciphertext  = plaintext XOR keystream
 ```
@@ -32,7 +32,7 @@ There are many known attacks on WEP. The simplest form is a brute force attack, 
 ### 2.2.1. Fluhrer, Mantin and Shamir (FMS) attack
 The FMS attack allows attackers to derive the key from a numerous amount of messages that are encrypted with ARC4 Stream Cipher. It specifically exploits the weakness in the KSA of ARC4.
 
-Before the start of any scrambling, the attacker can actually derive the first byte of the keystream, as the first byte of the plaintext is usually always ‘0xAA’, which is the value of the SNAP header. We will use the value of the first byte of the keystream later on. The first byte of the keystream is then obtained as follows:
+Before the start of any scrambling, the attacker can actually derive the first byte of the keystream, as the first byte of the plaintext is usually always ‘0xAA’, which is the value of the SNAP header. We will use the value of the first byte of the keystream later on. The first byte of the keystream is obtained as follows:
 ```
 keystream_first_byte = 0xAA XOR ciphertext_first_byte
 ```
@@ -40,9 +40,9 @@ keystream_first_byte = 0xAA XOR ciphertext_first_byte
 There are particular IVs, which are deemed as weak IVs, that allow attackers to possibly derive the (M+1)th byte of the WEP key if they have the first byte of the keystream and the 0th to Mth bytes of the key.  This exploit is a result of one of the weaknesses of the KSA in ARC4.
 
 # 3. Design
-We will create our own mock WEP protocol, as we face difficulties in extracting actual WEP packets due to hardware constraints.
+We will create our own mock WEP protocol, as we face difficulties in extracting actual WEP packets due to hardware constraints. The mock WEP protocol will still satisfy the actual WEP specifications for the key length and IV length, but we will only include data packets. We will also include a WEP SNAP header packet as this is one of the weaknesses of WEP for the FMS attack.
 
-We will be designing our WEP cracking program based on the FMS attack on WEP, specifically targeting the ARC4, as it provides us with a proper guess for the WEP key, instead of other methods where frequency analysis is required, and many manual adjustments are required, which is not ideal.
+We will be designing our WEP cracking program based on the FMS attack on WEP, specifically targeting the ARC4, as it provides us with a proper guess for the WEP key. This method of cracking helps to differentiate the actual key from all the other possible keys by a noticeable margin. Thus it has been proven to be more effective than other methods using frequency analysis or methods that require manual adjustments to crack the password, which is not ideal and does not fully represent the actual scenario of an attack who does not actually know the key.
 
 ## 3.1. WEP Encryption
 There are 5 files involved in the WEP encryption.<br/>
