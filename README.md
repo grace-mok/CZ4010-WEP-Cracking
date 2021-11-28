@@ -42,7 +42,7 @@ There are particular IVs, which are deemed as weak IVs, that allow attackers to 
 # 3. Design
 We will create our own mock WEP protocol, as we face difficulties in extracting actual WEP packets due to hardware constraints. The mock WEP protocol will still satisfy the actual WEP specifications for the key length and IV length, but we will only include data packets. We will also include a WEP SNAP header packet as this is one of the weaknesses of WEP for the FMS attack.
 
-We will be designing our WEP cracking program based on the FMS attack on WEP, specifically targeting the ARC4, as it provides us with a proper guess for the WEP key. This method of cracking helps to differentiate the actual key from all the other possible keys by a noticeable margin. Thus it has been proven to be more effective than other methods using frequency analysis or methods that require manual adjustments to crack the password, which is not ideal and does not fully represent the actual scenario of an attack who does not actually know the key.
+We will be designing our WEP cracking program based on the FMS attack on WEP, specifically targeting the ARC4, as it provides us with a proper guess for the WEP key. This method of cracking helps to differentiate the actual key from all the other possible keys by a noticeable margin. Thus it has been proven to be more effective than other methods using frequency analysis or methods that require manual adjustments to crack the password, which is not ideal and does not fully represent the actual scenario of an attack where the attacker does not actually know the key.
 
 ## 3.1. WEP Encryption
 There are 5 files involved in the WEP encryption.<br/>
